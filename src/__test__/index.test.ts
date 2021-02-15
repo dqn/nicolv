@@ -1,4 +1,4 @@
-import { getPrograminfo } from "./../";
+import { getPrograminfo } from "..";
 
 const userSession = process.env.USER_SESSION!;
 const nicoliveProgramId = process.env.NICOLIVE_PROGRAM_ID!;

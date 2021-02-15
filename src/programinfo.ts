@@ -10,13 +10,21 @@ export type Room = {
   threadId: string;
 };
 
-export type SocialGroup = {
-  type: string;
-  id: string;
-  name: string;
-  communityLevel: number;
-  thumbnailUrl: string;
-};
+export type SocialGroup =
+  | {
+      type: "community";
+      id: string;
+      name: string;
+      communityLevel: number;
+      thumbnailUrl: string;
+    }
+  | {
+      type: "channel";
+      id: string;
+      name: string;
+      ownerName: string;
+      thumbnailUrl: string;
+    };
 
 export type Broadcaster = {
   name: string;
@@ -24,14 +32,19 @@ export type Broadcaster = {
 };
 
 export type StreamSetting = {
-  maxQuality: string;
-  orientation: string;
+  maxQuality:
+    | "6Mbps720p"
+    | "2Mbps450p"
+    | "1Mbps450p"
+    | "384kbps288p"
+    | "192kbps288p";
+  orientation: "Landscape" | "Portrait";
 };
 
 export type TagItem = {
   text: string;
   locked: boolean;
-  nicopediaArticleUrl: string;
+  nicopediaArticleUrl?: string;
 };
 
 export type Tags = {

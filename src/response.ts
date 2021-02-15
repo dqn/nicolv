@@ -16,6 +16,7 @@ export type NicoliveApiResponse<Data> =
       meta: {
         status: 404;
         errorCode: "NOT_FOUND";
+        errorMessage: string;
       };
     }
   | {
