@@ -16,7 +16,7 @@ export function getExtension(
   userSession: string,
   nicoliveProgramId: string,
 ): Promise<GetExtensionResponse> {
-  return request(`/watch/${nicoliveProgramId}/extension`, {
+  return request(`watch/${nicoliveProgramId}/extension`, {
     headers: {
       cookie: serializeCookie({
         user_session: userSession,
@@ -40,7 +40,7 @@ export function postExtension(
   nicoliveProgramId: string,
   body: PostExtensionRequest,
 ): Promise<PostExtensionResponse> {
-  return request(`/watch/${nicoliveProgramId}/extension`, {
+  return request(`watch/${nicoliveProgramId}/extension`, {
     method: "POST",
     headers: {
       "content-type": "application/json",

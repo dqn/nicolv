@@ -1,4 +1,9 @@
-import { getPrograminfo, getExtension, postExtension } from "./..";
+import {
+  getPrograminfo,
+  getExtension,
+  postExtension,
+  putOperatorComment,
+} from "./..";
 
 const userSession = process.env.USER_SESSION!;
 const nicoliveProgramId = process.env.NICOLIVE_PROGRAM_ID!;
@@ -16,9 +21,21 @@ describe("extension", () => {
     console.log(JSON.stringify(res));
   });
 
-  it("post", async () => {
+  xit("post", async () => {
     const res = await postExtension(userSession, nicoliveProgramId, {
       minutes: 30,
+    });
+    console.log(JSON.stringify(res));
+  });
+});
+
+describe("operator_comment", () => {
+  it("put", async () => {
+    const res = await putOperatorComment(userSession, nicoliveProgramId, {
+      text: "Hello, World!",
+      isPermanent: true,
+      userName: "dqn",
+      color: "yellow",
     });
     console.log(JSON.stringify(res));
   });
