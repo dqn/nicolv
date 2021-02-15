@@ -3,6 +3,7 @@ import {
   getExtension,
   postExtension,
   putOperatorComment,
+  deleteOperatorComment,
 } from "./..";
 
 const userSession = process.env.USER_SESSION!;
@@ -30,13 +31,18 @@ describe("extension", () => {
 });
 
 describe("operator_comment", () => {
-  it("put", async () => {
+  xit("put", async () => {
     const res = await putOperatorComment(userSession, nicoliveProgramId, {
       text: "Hello, World!",
       isPermanent: true,
       userName: "dqn",
       color: "yellow",
     });
+    console.log(JSON.stringify(res));
+  });
+
+  it("delete", async () => {
+    const res = await deleteOperatorComment(userSession, nicoliveProgramId);
     console.log(JSON.stringify(res));
   });
 });

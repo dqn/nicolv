@@ -39,3 +39,21 @@ export function putOperatorComment(
     body: JSON.stringify(body),
   });
 }
+
+export type DeleteOperatorCommentData = undefined;
+
+export type DeleteOperatorCommentResponse = NicoliveApiResponse<DeleteOperatorCommentData>;
+
+export function deleteOperatorComment(
+  userSession: string,
+  nicoliveProgramId: string,
+): Promise<DeleteOperatorCommentResponse> {
+  return request(`watch/${nicoliveProgramId}/operator_comment`, {
+    method: "DELETE",
+    headers: {
+      cookie: serializeCookie({
+        user_session: userSession,
+      }),
+    },
+  });
+}
