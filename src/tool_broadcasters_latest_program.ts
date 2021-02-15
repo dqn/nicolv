@@ -1,11 +1,14 @@
 import { request } from "./request";
-import type { NicoliveApiResponse } from "./response";
+import type { Meta } from "./meta";
 
 export type GetToolBroadcastersLatestProgramData = {
   nicoliveProgramId: string;
 };
 
-export type GetToolBroadcastersLatestProgramResponse = NicoliveApiResponse<GetToolBroadcastersLatestProgramData>;
+export type GetToolBroadcastersLatestProgramResponse = {
+  meta: Meta;
+  data: GetToolBroadcastersLatestProgramData;
+};
 
 export function getToolBroadcastersLatestProgramUser(
   uid: number | string,

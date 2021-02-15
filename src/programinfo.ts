@@ -1,6 +1,6 @@
 import type { Category, OptionalCategory } from "./category";
 import { request, serializeCookie } from "./request";
-import type { NicoliveApiResponse } from "./response";
+import type { Meta } from "./meta";
 
 export type Room = {
   webSocketUri: string;
@@ -69,7 +69,10 @@ export type GetPrograminfoData = {
   tags: Tags;
 };
 
-export type GetPrograminfoResponse = NicoliveApiResponse<GetPrograminfoData>;
+export type GetPrograminfoResponse = {
+  meta: Meta;
+  data: GetPrograminfoData;
+};
 
 export function getPrograminfo(
   userSession: string,

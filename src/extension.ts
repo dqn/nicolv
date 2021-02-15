@@ -1,5 +1,5 @@
 import { request, serializeCookie } from "./request";
-import type { NicoliveApiResponse } from "./response";
+import type { Meta } from "./meta";
 
 export type Method = {
   type: "free";
@@ -10,7 +10,10 @@ export type GetExtensionData = {
   methods: Method[];
 };
 
-export type GetExtensionResponse = NicoliveApiResponse<GetExtensionData>;
+export type GetExtensionResponse = {
+  meta: Meta;
+  data: GetExtensionData;
+};
 
 export function getExtension(
   userSession: string,
@@ -35,7 +38,10 @@ export type PostExtensionData = {
   end_time: number;
 };
 
-export type PostExtensionResponse = NicoliveApiResponse<PostExtensionData>;
+export type PostExtensionResponse = {
+  meta: Meta;
+  data: PostExtensionData;
+};
 
 export function postExtension(
   userSession: string,

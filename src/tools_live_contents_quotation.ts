@@ -1,9 +1,5 @@
 import { request, serializeCookie } from "./request";
-import type { NicoliveApiResponse } from "./response";
-
-export type Meta = {
-  status: number;
-};
+import type { Meta } from "./meta";
 
 export type Main = {
   volume: number;
@@ -47,9 +43,9 @@ export function getToolsLiveContentsQuotation(
   });
 }
 
-export type DeleteToolsLiveContentsQuotationData = undefined;
-
-export type DeleteToolsLiveContentsQuotationResponse = NicoliveApiResponse<DeleteToolsLiveContentsQuotationData>;
+export type DeleteToolsLiveContentsQuotationResponse = {
+  meta: Meta;
+};
 
 export function deleteToolsLiveContentsQuotation(
   userSession: string,

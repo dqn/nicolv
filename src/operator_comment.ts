@@ -1,5 +1,5 @@
 import { request, serializeCookie } from "./request";
-import type { NicoliveApiResponse } from "./response";
+import type { Meta } from "./meta";
 
 export type PutOperatorCommentRequest = {
   text: string;
@@ -19,9 +19,9 @@ export type PutOperatorCommentRequest = {
   link?: string;
 };
 
-export type PutOperatorCommentData = undefined;
-
-export type PutOperatorCommentResponse = NicoliveApiResponse<PutOperatorCommentData>;
+export type PutOperatorCommentResponse = {
+  meta: Meta;
+};
 
 export function putOperatorComment(
   userSession: string,
@@ -42,9 +42,9 @@ export function putOperatorComment(
   });
 }
 
-export type DeleteOperatorCommentData = undefined;
-
-export type DeleteOperatorCommentResponse = NicoliveApiResponse<DeleteOperatorCommentData>;
+export type DeleteOperatorCommentResponse = {
+  meta: Meta;
+};
 
 export function deleteOperatorComment(
   userSession: string,

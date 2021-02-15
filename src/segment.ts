@@ -1,5 +1,5 @@
 import { request, serializeCookie } from "./request";
-import type { NicoliveApiResponse } from "./response";
+import type { Meta } from "./meta";
 
 export type PutSegmentRequest = {
   state: "on_air" | "end";
@@ -10,7 +10,10 @@ export type PutSegmentData = {
   start_time: number;
 };
 
-export type PutSegmentResponse = NicoliveApiResponse<PutSegmentData>;
+export type PutSegmentResponse = {
+  meta: Meta;
+  data: PutSegmentData;
+};
 
 export function putSegment(
   userSession: string,
