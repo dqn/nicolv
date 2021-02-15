@@ -52,7 +52,7 @@ export type Tags = {
   ownerLocked: boolean;
 };
 
-export type Data = {
+export type GetPrograminfoData = {
   title: string;
   description: string;
   isMemberOnly: boolean;
@@ -69,7 +69,7 @@ export type Data = {
   tags: Tags;
 };
 
-export type GetPrograminfoResponse = NicoliveApiResponse<Data>;
+export type GetPrograminfoResponse = NicoliveApiResponse<GetPrograminfoData>;
 
 export function getPrograminfo(
   userSession: string,

@@ -8,6 +8,13 @@ export type NicoliveApiResponse<Data> =
     }
   | {
       meta: {
+        status: 400;
+        errorCode: "BAD_REQUEST";
+        errorMessage: string;
+      };
+    }
+  | {
+      meta: {
         status: 401;
         errorCode: "UNAUTHORIZED";
       };
