@@ -8,6 +8,7 @@ import {
   getToolBroadcastersLatestProgramUser,
   getToolBroadcastersLatestProgramSocialGroup,
   deleteToolsLiveContentsQuotation,
+  getToolsLiveContentsQuotation,
 } from "./..";
 
 const userSession = process.env.USER_SESSION!;
@@ -75,6 +76,14 @@ describe("tool_broadcasters_latest_program", () => {
 });
 
 describe("tools_live_contents_quotation", () => {
+  it("get", async () => {
+    const res = await getToolsLiveContentsQuotation(
+      userSession,
+      nicoliveProgramId,
+    );
+    console.log(JSON.stringify(res));
+  });
+
   xit("delete", async () => {
     const res = await deleteToolsLiveContentsQuotation(
       userSession,
