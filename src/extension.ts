@@ -16,7 +16,9 @@ export function getExtension(
   userSession: string,
   nicoliveProgramId: string,
 ): Promise<GetExtensionResponse> {
-  return request(`watch/${nicoliveProgramId}/extension`, {
+  const url = `https://live2.nicovideo.jp/watch/${nicoliveProgramId}/extension`;
+
+  return request(url, {
     headers: {
       cookie: serializeCookie({
         user_session: userSession,
@@ -40,7 +42,9 @@ export function postExtension(
   nicoliveProgramId: string,
   body: PostExtensionRequest,
 ): Promise<PostExtensionResponse> {
-  return request(`watch/${nicoliveProgramId}/extension`, {
+  const url = `https://live2.nicovideo.jp/watch/${nicoliveProgramId}/extension`;
+
+  return request(url, {
     method: "POST",
     headers: {
       "content-type": "application/json",

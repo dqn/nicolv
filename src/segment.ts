@@ -17,7 +17,9 @@ export function putSegment(
   nicoliveProgramId: string,
   body: PutSegmentRequest,
 ): Promise<PutSegmentResponse> {
-  return request(`watch/${nicoliveProgramId}/segment`, {
+  const url = `https://live2.nicovideo.jp/watch/${nicoliveProgramId}/segment`;
+
+  return request(url, {
     method: "PUT",
     headers: {
       "content-type": "application/json",

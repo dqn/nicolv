@@ -75,7 +75,9 @@ export function getPrograminfo(
   userSession: string,
   nicoliveProgramId: string,
 ): Promise<GetPrograminfoResponse> {
-  return request(`unama/watch/${nicoliveProgramId}/programinfo`, {
+  const url = `https://live2.nicovideo.jp/unama/watch/${nicoliveProgramId}/programinfo`;
+
+  return request(url, {
     headers: {
       cookie: serializeCookie({
         user_session: userSession,

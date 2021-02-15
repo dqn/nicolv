@@ -28,7 +28,9 @@ export function putOperatorComment(
   nicoliveProgramId: string,
   body: PutOperatorCommentRequest,
 ): Promise<PutOperatorCommentResponse> {
-  return request(`watch/${nicoliveProgramId}/operator_comment`, {
+  const url = `https://live2.nicovideo.jp/watch/${nicoliveProgramId}/operator_comment`;
+
+  return request(url, {
     method: "PUT",
     headers: {
       "content-type": "application/json",
@@ -48,7 +50,9 @@ export function deleteOperatorComment(
   userSession: string,
   nicoliveProgramId: string,
 ): Promise<DeleteOperatorCommentResponse> {
-  return request(`watch/${nicoliveProgramId}/operator_comment`, {
+  const url = `https://live2.nicovideo.jp/watch/${nicoliveProgramId}/operator_comment`;
+
+  return request(url, {
     method: "DELETE",
     headers: {
       cookie: serializeCookie({

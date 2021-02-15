@@ -10,11 +10,15 @@ export type GetToolBroadcastersLatestProgramResponse = NicoliveApiResponse<GetTo
 export function getToolBroadcastersLatestProgramUser(
   uid: number | string,
 ): Promise<GetToolBroadcastersLatestProgramResponse> {
-  return request(`unama/tool/v1/broadcasters/user/${uid}/program`);
+  const url = `https://live2.nicovideo.jp/unama/tool/v1/broadcasters/user/${uid}/program`;
+
+  return request(url);
 }
 
 export function getToolBroadcastersLatestProgramSocialGroup(
   sid: string,
 ): Promise<GetToolBroadcastersLatestProgramResponse> {
-  return request(`unama/tool/v1/broadcasters/social_group/${sid}/program`);
+  const url = `https://live2.nicovideo.jp/unama/tool/v1/broadcasters/social_group/${sid}/program`;
+
+  return request(url);
 }
