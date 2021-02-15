@@ -4,6 +4,7 @@ import {
   postExtension,
   putOperatorComment,
   deleteOperatorComment,
+  putSegment,
 } from "./..";
 
 const userSession = process.env.USER_SESSION!;
@@ -41,8 +42,17 @@ describe("operator_comment", () => {
     console.log(JSON.stringify(res));
   });
 
-  it("delete", async () => {
+  xit("delete", async () => {
     const res = await deleteOperatorComment(userSession, nicoliveProgramId);
+    console.log(JSON.stringify(res));
+  });
+});
+
+describe("segment", () => {
+  xit("put", async () => {
+    const res = await putSegment(userSession, nicoliveProgramId, {
+      state: "on_air",
+    });
     console.log(JSON.stringify(res));
   });
 });
