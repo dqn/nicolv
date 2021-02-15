@@ -6,11 +6,13 @@ import {
   deleteOperatorComment,
   putSegment,
   getToolBroadcastersLatestProgramUser,
+  getToolBroadcastersLatestProgramSocialGroup,
 } from "./..";
 
 const userSession = process.env.USER_SESSION!;
 const nicoliveProgramId = process.env.NICOLIVE_PROGRAM_ID!;
 const uid = process.env.UID!;
+const sid = process.env.SID!;
 
 describe("programinfo", () => {
   xit("post", async () => {
@@ -60,8 +62,13 @@ describe("segment", () => {
 });
 
 describe("tool_broadcasters_latest_program", () => {
-  it("get user", async () => {
+  xit("get user", async () => {
     const res = await getToolBroadcastersLatestProgramUser(uid);
+    console.log(JSON.stringify(res));
+  });
+
+  xit("get social group", async () => {
+    const res = await getToolBroadcastersLatestProgramSocialGroup(sid);
     console.log(JSON.stringify(res));
   });
 });
