@@ -5,10 +5,12 @@ import {
   putOperatorComment,
   deleteOperatorComment,
   putSegment,
+  getToolBroadcastersLatestProgramUser,
 } from "./..";
 
 const userSession = process.env.USER_SESSION!;
 const nicoliveProgramId = process.env.NICOLIVE_PROGRAM_ID!;
+const uid = process.env.UID!;
 
 describe("programinfo", () => {
   xit("post", async () => {
@@ -53,6 +55,13 @@ describe("segment", () => {
     const res = await putSegment(userSession, nicoliveProgramId, {
       state: "on_air",
     });
+    console.log(JSON.stringify(res));
+  });
+});
+
+describe("tool_broadcasters_latest_program", () => {
+  it("get user", async () => {
+    const res = await getToolBroadcastersLatestProgramUser(uid);
     console.log(JSON.stringify(res));
   });
 });
