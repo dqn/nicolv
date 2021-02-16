@@ -9,11 +9,13 @@ import {
   getToolBroadcastersLatestProgramSocialGroup,
   deleteToolsLiveContentsQuotation,
   getToolsLiveContentsQuotation,
+  postToolsLiveContentsQuotation,
 } from "./..";
 import { request } from "./../request";
 
 const userSession = process.env.USER_SESSION!;
 const nicoliveProgramId = process.env.NICOLIVE_PROGRAM_ID!;
+const videoId = process.env.VIDEO_ID!;
 const uid = process.env.UID!;
 const sid = process.env.SID!;
 
@@ -85,6 +87,33 @@ describe("tools_live_contents_quotation", () => {
     const res = await getToolsLiveContentsQuotation(
       userSession,
       nicoliveProgramId,
+    );
+    expect(res.meta.status).toBe(200);
+  });
+
+  it("post", async () => {
+    const res = await postToolsLiveContentsQuotation(
+      userSession,
+      nicoliveProgramId,
+      {
+        layout: {
+          main: {
+            source: "quote",
+            volume: 1,
+          },
+          sub: {
+            source: "self",
+            volume: 1,
+            isSoundOnly: false,
+          },
+        },
+        contents: [
+          {
+            id: videoId,
+            type: "video",
+          },
+        ],
+      },
     );
     expect(res.meta.status).toBe(200);
   });

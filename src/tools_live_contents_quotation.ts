@@ -1,31 +1,11 @@
 import { request, serializeCookie } from "./request";
 import type { Meta } from "./meta";
-
-export type Main = {
-  volume: number;
-  source: "self" | "quote";
-};
-
-export type Sub = {
-  volume: number;
-  source: "self" | "quote";
-  isSoundOnly: boolean;
-};
-
-export type Layout = {
-  main: Main;
-  sub: Sub;
-};
-
-export type CurrentContent = {
-  id: string;
-  type: "video" | "live";
-};
+import type { QuoteContent, QuoteLayout } from "./quatation";
 
 export type GetToolsLiveContentsQuotationResponse = {
   meta: Meta;
-  layout: Layout;
-  currentContent: CurrentContent;
+  layout: QuoteLayout;
+  currentContent: QuoteContent;
 };
 
 export function getToolsLiveContentsQuotation(
@@ -40,6 +20,34 @@ export function getToolsLiveContentsQuotation(
         user_session: userSession,
       }),
     },
+  });
+}
+
+export type PostToolsLiveContentsQuotationRequest = {
+  layout: QuoteLayout;
+  contents: QuoteContent[];
+};
+
+export type PostToolsLiveContentsQuotationResponse = {
+  meta: Meta;
+};
+
+export function postToolsLiveContentsQuotation(
+  userSession: string,
+  contentId: string,
+  body: PostToolsLiveContentsQuotationRequest,
+): Promise<PostToolsLiveContentsQuotationResponse> {
+  const url = `https://lapi.spi.nicovideo.jp/v1/tools/live/contents/${contentId}/quotation`;
+
+  return request(url, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      cookie: serializeCookie({
+        user_session: userSession,
+      }),
+    },
+    body: JSON.stringify(body),
   });
 }
 
