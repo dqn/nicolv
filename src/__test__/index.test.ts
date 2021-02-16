@@ -15,6 +15,7 @@ import {
   getToolsLiveQuoteServicesVideoContents,
   getUnamaApiV2Broadcastable,
   getUnamaApiV2Programs,
+  postUnamaApiV2Programs,
 } from "./..";
 import { request } from "./../request";
 
@@ -194,5 +195,15 @@ describe("unama_api_v2_programs", () => {
   it("get", async () => {
     const res = await getUnamaApiV2Programs(userSession, nicoliveProgramId);
     expect(res.meta.status).toBe(200);
+  });
+
+  fit("post", async () => {
+    const res = await postUnamaApiV2Programs(userSession, {
+      category: "一般(その他)",
+      communityId: sid,
+      title: "Hello, World!",
+      description: "from nicolv",
+    });
+    expect(res.meta.status).toBe(201);
   });
 });
