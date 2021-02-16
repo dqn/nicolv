@@ -21,6 +21,7 @@ import {
   getUnamaToolV2OnairUser,
   getUnamaToolV2ProgramsSsng,
   postUnamaToolV2ProgramsSsng,
+  deleteUnamaToolV2ProgramsSsng,
 } from "./..";
 import { request } from "./../request";
 import { serializeCookie } from "./../cookie";
@@ -299,6 +300,16 @@ describe("unama_tool_v2_programs_ssng", () => {
         { type: "user", body: "42" },
         { type: "command", body: "bar" },
       ],
+    );
+    expect(res.meta.status).toBe(200);
+  });
+
+  it("delete", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await deleteUnamaToolV2ProgramsSsng(
+      userSession,
+      nicoliveProgramId,
+      { id: [42] },
     );
     expect(res.meta.status).toBe(200);
   });

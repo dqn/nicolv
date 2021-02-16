@@ -63,3 +63,26 @@ export function postUnamaToolV2ProgramsSsng(
     body: JSON.stringify(body),
   });
 }
+
+export type DeleteUnamaToolV2ProgramsSsngRequest = { id: number[] };
+
+export type DeleteUnamaToolV2ProgramsSsngResponse = {
+  meta: Meta;
+};
+
+export function deleteUnamaToolV2ProgramsSsng(
+  userSession: string,
+  nicoliveProgramId: string,
+  body: DeleteUnamaToolV2ProgramsSsngRequest,
+): Promise<DeleteUnamaToolV2ProgramsSsngResponse> {
+  const url = `https://live2.nicovideo.jp/unama/tool/v2/programs/${nicoliveProgramId}/ssng`;
+
+  return request(url, {
+    method: "DELETE",
+    headers: {
+      "content-type": "application/json",
+      "X-niconico-session": userSession,
+    },
+    body: JSON.stringify(body),
+  });
+}
