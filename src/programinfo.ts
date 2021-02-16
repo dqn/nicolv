@@ -1,6 +1,7 @@
 import type { Category, OptionalCategory } from "./category";
 import { request, serializeCookie } from "./request";
 import type { Meta } from "./meta";
+import type { Quality } from "./quality";
 
 export type Room = {
   webSocketUri: string;
@@ -32,12 +33,7 @@ export type Broadcaster = {
 };
 
 export type StreamSetting = {
-  maxQuality:
-    | "6Mbps720p"
-    | "2Mbps450p"
-    | "1Mbps450p"
-    | "384kbps288p"
-    | "192kbps288p";
+  maxQuality: Quality;
   orientation: "Landscape" | "Portrait";
 };
 

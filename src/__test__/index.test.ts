@@ -14,6 +14,7 @@ import {
   patchToolsLiveContentsQuotationLayout,
   getToolsLiveQuoteServicesVideoContents,
   getUnamaApiV2Broadcastable,
+  getUnamaApiV2Programs,
 } from "./..";
 import { request } from "./../request";
 
@@ -185,6 +186,13 @@ describe("tools_live_quote_services_video_contents", () => {
 describe("unama_api_v2_broadcastable", () => {
   it("get", async () => {
     const res = await getUnamaApiV2Broadcastable(userSession, sid);
+    expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("unama_api_v2_programs", () => {
+  it("get", async () => {
+    const res = await getUnamaApiV2Programs(userSession, nicoliveProgramId);
     expect(res.meta.status).toBe(200);
   });
 });
