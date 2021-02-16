@@ -10,6 +10,8 @@ import {
   deleteToolsLiveContentsQuotation,
   getToolsLiveContentsQuotation,
   postToolsLiveContentsQuotation,
+  patchToolsLiveContentsQuotationContents,
+  patchToolsLiveContentsQuotationLayout,
 } from "./..";
 import { request } from "./../request";
 
@@ -139,6 +141,29 @@ describe("tools_live_contents_quotation_contents", () => {
             type: "video",
           },
         ],
+      },
+    );
+    expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("tools_live_contents_quotation_layout", () => {
+  it("patch", async () => {
+    const res = await patchToolsLiveContentsQuotationLayout(
+      userSession,
+      nicoliveProgramId,
+      {
+        layout: {
+          main: {
+            source: "self",
+            volume: 1,
+          },
+          sub: {
+            source: "quote",
+            volume: 1,
+            isSoundOnly: false,
+          },
+        },
       },
     );
     expect(res.meta.status).toBe(200);
