@@ -22,6 +22,7 @@ import {
   getUnamaToolV2ProgramsSsng,
   postUnamaToolV2ProgramsSsng,
   deleteUnamaToolV2ProgramsSsng,
+  getUserNickname,
 } from "./..";
 import { request } from "./../request";
 import { serializeCookie } from "./../cookie";
@@ -312,5 +313,13 @@ describe("unama_tool_v2_programs_ssng", () => {
       { id: [42] },
     );
     expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("user_nickname", () => {
+  it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await getUserNickname(uid);
+    expect(res.error).toBeUndefined();
   });
 });
