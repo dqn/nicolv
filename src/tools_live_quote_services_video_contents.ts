@@ -12,7 +12,7 @@ export type GetToolsLiveQuoteServicesVideoContentsData = {
 
 export type GetToolsLiveQuoteServicesVideoContentsResponse = {
   meta: Meta;
-  data: GetToolsLiveQuoteServicesVideoContentsData;
+  data?: GetToolsLiveQuoteServicesVideoContentsData;
 };
 
 export function getToolsLiveQuoteServicesVideoContents(

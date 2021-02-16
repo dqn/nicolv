@@ -13,7 +13,7 @@ export type GetExtensionData = {
 
 export type GetExtensionResponse = {
   meta: Meta;
-  data: GetExtensionData;
+  data?: GetExtensionData;
 };
 
 export function getExtension(
@@ -41,7 +41,7 @@ export type PostExtensionData = {
 
 export type PostExtensionResponse = {
   meta: Meta;
-  data: PostExtensionData;
+  data?: PostExtensionData;
 };
 
 export function postExtension(

@@ -68,7 +68,7 @@ export type GetPrograminfoData = {
 
 export type GetPrograminfoResponse = {
   meta: Meta;
-  data: GetPrograminfoData;
+  data?: GetPrograminfoData;
 };
 
 export function getPrograminfo(

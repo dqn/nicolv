@@ -14,7 +14,7 @@ export type PostWatchEnquete2Data = {
 
 export type PostWatchEnquete2Response = {
   meta: Meta;
-  data: PostWatchEnquete2Data;
+  data?: PostWatchEnquete2Data;
 };
 
 export function postWatchEnquete2(

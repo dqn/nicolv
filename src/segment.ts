@@ -13,7 +13,7 @@ export type PutSegmentData = {
 
 export type PutSegmentResponse = {
   meta: Meta;
-  data: PutSegmentData;
+  data?: PutSegmentData;
 };
 
 export function putSegment(

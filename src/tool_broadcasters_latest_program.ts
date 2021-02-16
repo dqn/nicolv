@@ -7,7 +7,7 @@ export type GetToolBroadcastersLatestProgramData = {
 
 export type GetToolBroadcastersLatestProgramResponse = {
   meta: Meta;
-  data: GetToolBroadcastersLatestProgramData;
+  data?: GetToolBroadcastersLatestProgramData;
 };
 
 export function getToolBroadcastersLatestProgramUser(

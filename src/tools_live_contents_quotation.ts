@@ -5,8 +5,8 @@ import type { QuoteContent, QuoteLayout } from "./quatation";
 
 export type GetToolsLiveContentsQuotationResponse = {
   meta: Meta;
-  layout: QuoteLayout;
-  currentContent: QuoteContent;
+  layout?: QuoteLayout;
+  currentContent?: QuoteContent;
 };
 
 export function getToolsLiveContentsQuotation(

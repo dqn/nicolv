@@ -44,7 +44,7 @@ export type PostUnamaToolV2ProgramsSsngData = PostUnamaToolV2ProgramsSsngDatum[]
 
 export type PostUnamaToolV2ProgramsSsngResponse = {
   meta: Meta;
-  data: PostUnamaToolV2ProgramsSsngData;
+  data?: PostUnamaToolV2ProgramsSsngData;
 };
 
 export function postUnamaToolV2ProgramsSsng(
