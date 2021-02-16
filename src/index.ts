@@ -16,3 +16,4 @@ export * from "./user_nickname";
 export * from "./watch_enquete";
 export * from "./watch_enquete2";
 export * from "./watch_statistics";
+export * from "./watch_user_comment_permission";
