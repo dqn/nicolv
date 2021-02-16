@@ -20,6 +20,7 @@ import {
   getUnamaApiV2ProgramsCategories,
   getUnamaToolV2OnairUser,
   getUnamaToolV2ProgramsSsng,
+  postUnamaToolV2ProgramsSsng,
 } from "./..";
 import { request } from "./../request";
 import { serializeCookie } from "./../cookie";
@@ -284,6 +285,20 @@ describe("unama_tool_v2_programs_ssng", () => {
     const res = await getUnamaToolV2ProgramsSsng(
       userSession,
       nicoliveProgramId,
+    );
+    expect(res.meta.status).toBe(200);
+  });
+
+  it("post", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await postUnamaToolV2ProgramsSsng(
+      userSession,
+      nicoliveProgramId,
+      [
+        { type: "word", body: "foo" },
+        { type: "user", body: "42" },
+        { type: "command", body: "bar" },
+      ],
     );
     expect(res.meta.status).toBe(200);
   });
