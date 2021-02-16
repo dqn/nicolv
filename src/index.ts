@@ -15,3 +15,4 @@ export * from "./unama_tool_v2_programs_ssng";
 export * from "./user_nickname";
 export * from "./watch_enquete";
 export * from "./watch_enquete2";
+export * from "./watch_statistics";

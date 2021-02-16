@@ -26,6 +26,7 @@ import {
   postWatchEnquete2,
   deleteWatchEnquete,
   postWatchEnquete,
+  getWatchStatistics,
 } from "./..";
 import { request } from "./../request";
 import { serializeCookie } from "./../cookie";
@@ -348,6 +349,14 @@ describe("watch_enquete", () => {
   it("delete", async () => {
     // requestMock.mockImplementation(requestActual);
     const res = await deleteWatchEnquete(userSession, nicoliveProgramId);
+    expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("watch_statistics", () => {
+  it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await getWatchStatistics(userSession, nicoliveProgramId);
     expect(res.meta.status).toBe(200);
   });
 });
