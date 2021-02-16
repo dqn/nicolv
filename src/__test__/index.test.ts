@@ -18,6 +18,7 @@ import {
   postUnamaApiV2Programs,
   patchUnamaApiV2Programs,
   getUnamaApiV2ProgramsCategories,
+  getUnamaToolV2OnairUser,
 } from "./..";
 import { request } from "./../request";
 
@@ -220,6 +221,13 @@ describe("unama_api_v2_programs", () => {
 describe("unama_api_v2_programs_categories", () => {
   it("get", async () => {
     const res = await getUnamaApiV2ProgramsCategories();
+    expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("unama_tool_v2_onair_user", () => {
+  it("get", async () => {
+    const res = await getUnamaToolV2OnairUser(userSession);
     expect(res.meta.status).toBe(200);
   });
 });
