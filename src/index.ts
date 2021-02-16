@@ -11,3 +11,4 @@ export * from "./unama_api_v2_broadcastable";
 export * from "./unama_api_v2_programs_categories";
 export * from "./unama_api_v2_programs";
 export * from "./unama_tool_v2_onair_user";
+export * from "./unama_tool_v2_programs_ssng";
