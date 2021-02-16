@@ -12,12 +12,13 @@ import {
   postToolsLiveContentsQuotation,
   patchToolsLiveContentsQuotationContents,
   patchToolsLiveContentsQuotationLayout,
+  getToolsLiveQuoteServicesVideoContents,
 } from "./..";
 import { request } from "./../request";
 
 const userSession = process.env.USER_SESSION!;
 const nicoliveProgramId = process.env.NICOLIVE_PROGRAM_ID!;
-const videoId = process.env.VIDEO_ID!;
+const contentId = process.env.CONTENT_ID!;
 const uid = process.env.UID!;
 const sid = process.env.SID!;
 
@@ -111,7 +112,7 @@ describe("tools_live_contents_quotation", () => {
         },
         contents: [
           {
-            id: videoId,
+            id: contentId,
             type: "video",
           },
         ],
@@ -137,7 +138,7 @@ describe("tools_live_contents_quotation_contents", () => {
       {
         contents: [
           {
-            id: "sm9",
+            id: contentId,
             type: "video",
           },
         ],
@@ -165,6 +166,16 @@ describe("tools_live_contents_quotation_layout", () => {
           },
         },
       },
+    );
+    expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("tools_live_quote_services_video_contents", () => {
+  it("get", async () => {
+    const res = await getToolsLiveQuoteServicesVideoContents(
+      userSession,
+      contentId,
     );
     expect(res.meta.status).toBe(200);
   });
