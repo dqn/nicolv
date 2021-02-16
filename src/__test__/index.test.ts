@@ -16,6 +16,7 @@ import {
   getUnamaApiV2Broadcastable,
   getUnamaApiV2Programs,
   postUnamaApiV2Programs,
+  patchUnamaApiV2Programs,
 } from "./..";
 import { request } from "./../request";
 
@@ -197,7 +198,7 @@ describe("unama_api_v2_programs", () => {
     expect(res.meta.status).toBe(200);
   });
 
-  fit("post", async () => {
+  it("post", async () => {
     const res = await postUnamaApiV2Programs(userSession, {
       category: "一般(その他)",
       communityId: sid,
@@ -205,5 +206,12 @@ describe("unama_api_v2_programs", () => {
       description: "from nicolv",
     });
     expect(res.meta.status).toBe(201);
+  });
+
+  it("patch", async () => {
+    const res = await patchUnamaApiV2Programs(userSession, nicoliveProgramId, {
+      title: "Edited title",
+    });
+    expect(res.meta.status).toBe(200);
   });
 });

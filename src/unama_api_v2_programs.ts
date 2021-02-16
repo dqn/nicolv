@@ -133,3 +133,26 @@ export function postUnamaApiV2Programs(
     body: JSON.stringify(body),
   });
 }
+
+export type PatchUnamaApiV2ProgramsRequest = Partial<PostUnamaApiV2ProgramsRequest>;
+
+export type PatchUnamaApiV2ProgramsResponse = {
+  meta: Meta;
+};
+
+export function patchUnamaApiV2Programs(
+  userSession: string,
+  nicoliveProgramId: string,
+  body: PatchUnamaApiV2ProgramsRequest,
+): Promise<PatchUnamaApiV2ProgramsResponse> {
+  const url = `https://live2.nicovideo.jp/unama/api/v2/programs/${nicoliveProgramId}`;
+
+  return request(url, {
+    method: "PATCH",
+    headers: {
+      "content-type": "application/json",
+      "X-niconico-session": userSession,
+    },
+    body: JSON.stringify(body),
+  });
+}
