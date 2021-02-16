@@ -13,3 +13,4 @@ export * from "./unama_api_v2_programs";
 export * from "./unama_tool_v2_onair_user";
 export * from "./unama_tool_v2_programs_ssng";
 export * from "./user_nickname";
+export * from "./watch_enquete2";
