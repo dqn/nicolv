@@ -8,4 +8,5 @@ export * from "./tools_live_contents_quotation_layout";
 export * from "./tools_live_contents_quotation";
 export * from "./tools_live_quote_services_video_contents";
 export * from "./unama_api_v2_broadcastable";
+export * from "./unama_api_v2_programs_categories";
 export * from "./unama_api_v2_programs";

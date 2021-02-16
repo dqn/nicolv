@@ -11,8 +11,4 @@ export type Category =
   | "ゲーム"
   | "動画紹介";
 
-export type OptionalCategory =
-  | "凸待ち"
-  | "顔出し"
-  | "クルーズ待ち"
-  | "みんなで遊ぶ";
+export type OptionalCategory = "凸待ち" | "顔出し" | "クルーズ待ち";
