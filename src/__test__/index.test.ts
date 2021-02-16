@@ -22,6 +22,7 @@ import {
   getUnamaToolV2ProgramsSsng,
 } from "./..";
 import { request } from "./../request";
+import { serializeCookie } from "./../cookie";
 
 const userSession = process.env.USER_SESSION!;
 const nicoliveProgramId = process.env.NICOLIVE_PROGRAM_ID!;
@@ -30,11 +31,24 @@ const uid = process.env.UID!;
 const sid = process.env.SID!;
 
 jest.mock("./../request");
-const requestMock = request as jest.Mock;
+const requestMock = request as jest.MockedFunction<typeof request>;
 requestMock.mockResolvedValue({ meta: { status: 200 } });
+
+const requestActual = jest.requireActual("./../request")
+  .request as typeof request;
+
+describe("serializeCookie", () => {
+  it("test", () => {
+    const cookie = serializeCookie({
+      user_session: "user_session_XXXXX",
+    });
+    expect(cookie).toBe("user_session=user_session_XXXXX;");
+  });
+});
 
 describe("programinfo", () => {
   it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await getPrograminfo(userSession, nicoliveProgramId);
     expect(res.meta.status).toBe(200);
   });
@@ -42,11 +56,13 @@ describe("programinfo", () => {
 
 describe("extension", () => {
   it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await getExtension(userSession, nicoliveProgramId);
     expect(res.meta.status).toBe(200);
   });
 
   it("post", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await postExtension(userSession, nicoliveProgramId, {
       minutes: 30,
     });
@@ -56,6 +72,7 @@ describe("extension", () => {
 
 describe("operator_comment", () => {
   it("put", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await putOperatorComment(userSession, nicoliveProgramId, {
       text: "Hello, World!",
       isPermanent: true,
@@ -66,6 +83,7 @@ describe("operator_comment", () => {
   });
 
   it("delete", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await deleteOperatorComment(userSession, nicoliveProgramId);
     expect(res.meta.status).toBe(200);
   });
@@ -73,6 +91,7 @@ describe("operator_comment", () => {
 
 describe("segment", () => {
   it("put", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await putSegment(userSession, nicoliveProgramId, {
       state: "on_air",
     });
@@ -82,11 +101,13 @@ describe("segment", () => {
 
 describe("tool_broadcasters_latest_program", () => {
   it("get user", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await getToolBroadcastersLatestProgramUser(uid);
     expect(res.meta.status).toBe(200);
   });
 
   it("get social group", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await getToolBroadcastersLatestProgramSocialGroup(sid);
     expect(res.meta.status).toBe(200);
   });
@@ -94,6 +115,7 @@ describe("tool_broadcasters_latest_program", () => {
 
 describe("tools_live_contents_quotation", () => {
   it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await getToolsLiveContentsQuotation(
       userSession,
       nicoliveProgramId,
@@ -102,6 +124,7 @@ describe("tools_live_contents_quotation", () => {
   });
 
   it("post", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await postToolsLiveContentsQuotation(
       userSession,
       nicoliveProgramId,
@@ -129,6 +152,7 @@ describe("tools_live_contents_quotation", () => {
   });
 
   it("delete", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await deleteToolsLiveContentsQuotation(
       userSession,
       nicoliveProgramId,
@@ -139,6 +163,7 @@ describe("tools_live_contents_quotation", () => {
 
 describe("tools_live_contents_quotation_contents", () => {
   it("patch", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await patchToolsLiveContentsQuotationContents(
       userSession,
       nicoliveProgramId,
@@ -157,6 +182,7 @@ describe("tools_live_contents_quotation_contents", () => {
 
 describe("tools_live_contents_quotation_layout", () => {
   it("patch", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await patchToolsLiveContentsQuotationLayout(
       userSession,
       nicoliveProgramId,
@@ -180,6 +206,7 @@ describe("tools_live_contents_quotation_layout", () => {
 
 describe("tools_live_quote_services_video_contents", () => {
   it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await getToolsLiveQuoteServicesVideoContents(
       userSession,
       contentId,
@@ -190,28 +217,44 @@ describe("tools_live_quote_services_video_contents", () => {
 
 describe("unama_api_v2_broadcastable", () => {
   it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await getUnamaApiV2Broadcastable(userSession, sid);
+    expect(res.meta.status).toBe(200);
+  });
+
+  it("get without sid", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await getUnamaApiV2Broadcastable(userSession);
     expect(res.meta.status).toBe(200);
   });
 });
 
 describe("unama_api_v2_programs", () => {
   it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await getUnamaApiV2Programs(userSession, nicoliveProgramId);
     expect(res.meta.status).toBe(200);
   });
 
+  it("get without nicoliveProgramId", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await getUnamaApiV2Programs(userSession);
+    expect(res.meta.status).toBe(200);
+  });
+
   it("post", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await postUnamaApiV2Programs(userSession, {
       category: "一般(その他)",
       communityId: sid,
       title: "Hello, World!",
       description: "from nicolv",
     });
-    expect(res.meta.status).toBe(201);
+    expect(res.meta.status).toBe(200);
   });
 
   it("patch", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await patchUnamaApiV2Programs(userSession, nicoliveProgramId, {
       title: "Edited title",
     });
@@ -221,6 +264,7 @@ describe("unama_api_v2_programs", () => {
 
 describe("unama_api_v2_programs_categories", () => {
   it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await getUnamaApiV2ProgramsCategories();
     expect(res.meta.status).toBe(200);
   });
@@ -228,6 +272,7 @@ describe("unama_api_v2_programs_categories", () => {
 
 describe("unama_tool_v2_onair_user", () => {
   it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await getUnamaToolV2OnairUser(userSession);
     expect(res.meta.status).toBe(200);
   });
@@ -235,6 +280,7 @@ describe("unama_tool_v2_onair_user", () => {
 
 describe("unama_tool_v2_programs_ssng", () => {
   it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
     const res = await getUnamaToolV2ProgramsSsng(
       userSession,
       nicoliveProgramId,

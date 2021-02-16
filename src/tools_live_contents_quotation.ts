@@ -1,4 +1,5 @@
-import { request, serializeCookie } from "./request";
+import { request } from "./request";
+import { serializeCookie } from "./cookie";
 import type { Meta } from "./meta";
 import type { QuoteContent, QuoteLayout } from "./quatation";
 

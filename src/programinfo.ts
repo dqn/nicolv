@@ -1,5 +1,6 @@
+import { request } from "./request";
+import { serializeCookie } from "./cookie";
 import type { Category, OptionalCategory } from "./category";
-import { request, serializeCookie } from "./request";
 import type { Meta } from "./meta";
 import type { Quality } from "./quality";
 
