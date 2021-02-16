@@ -126,3 +126,21 @@ describe("tools_live_contents_quotation", () => {
     expect(res.meta.status).toBe(200);
   });
 });
+
+describe("tools_live_contents_quotation_contents", () => {
+  it("patch", async () => {
+    const res = await patchToolsLiveContentsQuotationContents(
+      userSession,
+      nicoliveProgramId,
+      {
+        contents: [
+          {
+            id: "sm9",
+            type: "video",
+          },
+        ],
+      },
+    );
+    expect(res.meta.status).toBe(200);
+  });
+});
