@@ -21,3 +21,9 @@ jobs:
           yarn --frozen-lockfile
           yarn build
           yarn test
+        env:
+          USER_SESSION: user_session_XXXXX
+          NICOLIVE_PROGRAM_ID: lv42
+          CONTENT_ID: sm42
+          UID: 42
+          SID: co42

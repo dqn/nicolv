@@ -2,3 +2,4 @@ coverage/
 dist/
 json/
 node_modules/
+.env
