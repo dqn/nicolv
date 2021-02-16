@@ -25,6 +25,7 @@ import {
   getUserNickname,
   postWatchEnquete2,
   deleteWatchEnquete,
+  postWatchEnquete,
 } from "./..";
 import { request } from "./../request";
 import { serializeCookie } from "./../cookie";
@@ -335,6 +336,15 @@ describe("watch_enquete2", () => {
 });
 
 describe("watch_enquete", () => {
+  it("post", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await postWatchEnquete(userSession, nicoliveProgramId, {
+      question: "which?",
+      items: ["foo", "bar", "baz"],
+    });
+    expect(res.meta.status).toBe(200);
+  });
+
   it("delete", async () => {
     // requestMock.mockImplementation(requestActual);
     const res = await deleteWatchEnquete(userSession, nicoliveProgramId);
