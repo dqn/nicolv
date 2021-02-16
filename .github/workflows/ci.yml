@@ -20,3 +20,4 @@ jobs:
         run: |
           yarn --frozen-lockfile
           yarn build
+          yarn test

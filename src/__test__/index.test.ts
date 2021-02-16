@@ -10,68 +10,73 @@ import {
   deleteToolsLiveContentsQuotation,
   getToolsLiveContentsQuotation,
 } from "./..";
+import { request } from "./../request";
 
 const userSession = process.env.USER_SESSION!;
 const nicoliveProgramId = process.env.NICOLIVE_PROGRAM_ID!;
 const uid = process.env.UID!;
 const sid = process.env.SID!;
 
+jest.mock("./../request");
+const requestMock = request as jest.Mock;
+requestMock.mockResolvedValue({ meta: { status: 200 } });
+
 describe("programinfo", () => {
-  xit("post", async () => {
+  it("get", async () => {
     const res = await getPrograminfo(userSession, nicoliveProgramId);
-    console.log(JSON.stringify(res));
+    expect(res.meta.status).toBe(200);
   });
 });
 
 describe("extension", () => {
-  xit("get", async () => {
+  it("get", async () => {
     const res = await getExtension(userSession, nicoliveProgramId);
-    console.log(JSON.stringify(res));
+    expect(res.meta.status).toBe(200);
   });
 
-  xit("post", async () => {
+  it("post", async () => {
     const res = await postExtension(userSession, nicoliveProgramId, {
       minutes: 30,
     });
-    console.log(JSON.stringify(res));
+    expect(res.meta.status).toBe(200);
   });
 });
 
 describe("operator_comment", () => {
-  xit("put", async () => {
+  it("put", async () => {
     const res = await putOperatorComment(userSession, nicoliveProgramId, {
       text: "Hello, World!",
       isPermanent: true,
       userName: "dqn",
       color: "yellow",
     });
-    console.log(JSON.stringify(res));
+    expect(res.meta.status).toBe(200);
   });
 
-  xit("delete", async () => {
+  it("delete", async () => {
     const res = await deleteOperatorComment(userSession, nicoliveProgramId);
-    console.log(JSON.stringify(res));
+    expect(res.meta.status).toBe(200);
   });
 });
 
 describe("segment", () => {
-  xit("put", async () => {
+  it("put", async () => {
     const res = await putSegment(userSession, nicoliveProgramId, {
       state: "on_air",
     });
-    console.log(JSON.stringify(res));
+    expect(res.meta.status).toBe(200);
   });
 });
 
 describe("tool_broadcasters_latest_program", () => {
-  xit("get user", async () => {
+  it("get user", async () => {
     const res = await getToolBroadcastersLatestProgramUser(uid);
-    console.log(JSON.stringify(res));
+    expect(res.meta.status).toBe(200);
   });
 
-  xit("get social group", async () => {
+  it("get social group", async () => {
     const res = await getToolBroadcastersLatestProgramSocialGroup(sid);
-    console.log(JSON.stringify(res));
+    expect(res.meta.status).toBe(200);
   });
 });
 
@@ -81,14 +86,14 @@ describe("tools_live_contents_quotation", () => {
       userSession,
       nicoliveProgramId,
     );
-    console.log(JSON.stringify(res));
+    expect(res.meta.status).toBe(200);
   });
 
-  xit("delete", async () => {
+  it("delete", async () => {
     const res = await deleteToolsLiveContentsQuotation(
       userSession,
       nicoliveProgramId,
     );
-    console.log(JSON.stringify(res));
+    expect(res.meta.status).toBe(200);
   });
 });
