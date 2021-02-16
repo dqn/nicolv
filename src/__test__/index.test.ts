@@ -24,6 +24,7 @@ import {
   deleteUnamaToolV2ProgramsSsng,
   getUserNickname,
   postWatchEnquete2,
+  deleteWatchEnquete,
 } from "./..";
 import { request } from "./../request";
 import { serializeCookie } from "./../cookie";
@@ -329,6 +330,14 @@ describe("watch_enquete2", () => {
   it("post", async () => {
     // requestMock.mockImplementation(requestActual);
     const res = await postWatchEnquete2(userSession, nicoliveProgramId);
+    expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("watch_enquete", () => {
+  it("delete", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await deleteWatchEnquete(userSession, nicoliveProgramId);
     expect(res.meta.status).toBe(200);
   });
 });
