@@ -1,5 +1,6 @@
 {
   "name": "nicolv",
+  "description": "nicolive API",
   "version": "0.1.0",
   "main": "dist/index.js",
   "license": "MIT",
@@ -21,5 +22,13 @@
   },
   "dependencies": {
     "node-fetch": "^2.6.1"
-  }
+  },
+  "keywords": [
+    "nicolive"
+  ],
+  "files": [
+    "dist/",
+    "LICENSE",
+    "README.md"
+  ]
 }
