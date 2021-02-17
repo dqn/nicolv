@@ -8,6 +8,7 @@ import {
   getToolBroadcastersLatestProgramUser,
   getToolBroadcastersLatestProgramSocialGroup,
   deleteToolsLiveContentsQuotation,
+  getToolProgramSchedules,
   getToolsLiveContentsQuotation,
   postToolsLiveContentsQuotation,
   patchToolsLiveContentsQuotationContents,
@@ -117,6 +118,14 @@ describe("tool_broadcasters_latest_program", () => {
   it("get social group", async () => {
     // requestMock.mockImplementation(requestActual);
     const res = await getToolBroadcastersLatestProgramSocialGroup(sid);
+    expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("tool_program_schedules", () => {
+  it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await getToolProgramSchedules(userSession);
     expect(res.meta.status).toBe(200);
   });
 });
