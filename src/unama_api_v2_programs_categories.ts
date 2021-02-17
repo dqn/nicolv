@@ -1,10 +1,9 @@
 import { request } from "./request";
 import type { Meta } from "./meta";
-import type { Category, OptionalCategory } from "./category";
 
 export type GetUnamaApiV2ProgramsCategoriesData = {
-  categories: Category[];
-  optionalCategories: OptionalCategory[];
+  categories: string[];
+  optionalCategories: string[];
 };
 
 export type GetUnamaApiV2ProgramsCategoriesResponse = {

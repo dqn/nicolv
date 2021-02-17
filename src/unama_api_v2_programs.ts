@@ -1,7 +1,6 @@
 import { request } from "./request";
 import type { Meta } from "./meta";
 import type { Quality } from "./quality";
-import type { Category, OptionalCategory } from "./category";
 
 export type RightsItem = {
   code: string;
@@ -59,11 +58,11 @@ export type GetUnamaApiV2ProgramsData = {
   maxQuality: Quality;
   testSchedule: TestSchedule;
   isUadEnabled: boolean;
-  optionalCategories: OptionalCategory[];
+  optionalCategories: string[];
   konomiTags: KonomiTag[];
   isIchibaEnabled: boolean;
   id: string;
-  category: Category;
+  category: string;
   isTimeshiftEnabled: boolean;
 };
 
@@ -90,8 +89,8 @@ export function getUnamaApiV2Programs(
 export type PostUnamaApiV2ProgramsRequest = {
   title: string;
   description: string;
-  category: Category;
-  optionalCategories?: OptionalCategory[];
+  category: string;
+  optionalCategories?: string[];
   tags?: Tag[];
   isTagOwnerLock?: boolean;
   communityId: string;

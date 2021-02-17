@@ -1,6 +1,5 @@
 import { request } from "./request";
 import { serializeCookie } from "./cookie";
-import type { Category, OptionalCategory } from "./category";
 import type { Meta } from "./meta";
 import type { Quality } from "./quality";
 
@@ -57,7 +56,7 @@ export type GetPrograminfoData = {
   beginAt: number;
   endAt: number;
   status: "test" | "onAir" | "end";
-  categories: (Category | OptionalCategory)[];
+  categories: string[];
   rooms: Room[];
   isUserNiconicoAdsEnabled: boolean;
   socialGroup: SocialGroup;
