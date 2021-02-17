@@ -2,20 +2,20 @@ import { request } from "./request";
 import { serializeCookie } from "./cookie";
 import type { Meta } from "./meta";
 
-export type GetWatchStatisticsData = {
+export type GetStatisticsData = {
   watchCount: number;
   commentCount: number;
 };
 
-export type GetWatchStatisticsResponse = {
+export type GetStatisticsResponse = {
   meta: Meta;
-  data?: GetWatchStatisticsData;
+  data?: GetStatisticsData;
 };
 
-export function getWatchStatistics(
+export function getStatistics(
   userSession: string,
   nicoliveProgramId: string,
-): Promise<GetWatchStatisticsResponse> {
+): Promise<GetStatisticsResponse> {
   const url = `https://live2.nicovideo.jp/watch/${nicoliveProgramId}/statistics`;
 
   return request(url, {

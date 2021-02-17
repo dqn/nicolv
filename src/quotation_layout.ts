@@ -1,21 +1,21 @@
 import { request } from "./request";
 import { serializeCookie } from "./cookie";
 import type { Meta } from "./meta";
-import type { QuoteLayout } from "./quatation";
+import type { QuoteLayout } from "./quote";
 
-export type PatchToolsLiveContentsQuotationLayoutRequest = {
+export type PatchQuotationLayoutRequest = {
   layout: QuoteLayout;
 };
 
-export type PatchToolsLiveContentsQuotationLayoutResponse = {
+export type PatchQuotationLayoutResponse = {
   meta: Meta;
 };
 
-export function patchToolsLiveContentsQuotationLayout(
+export function patchQuotationLayout(
   userSession: string,
   contentId: string,
-  body: PatchToolsLiveContentsQuotationLayoutRequest,
-): Promise<PatchToolsLiveContentsQuotationLayoutResponse> {
+  body: PatchQuotationLayoutRequest,
+): Promise<PatchQuotationLayoutResponse> {
   const url = `https://lapi.spi.nicovideo.jp/v1/tools/live/contents/${contentId}/quotation/layout`;
 
   return request(url, {

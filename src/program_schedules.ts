@@ -2,7 +2,7 @@ import { request } from "./request";
 import { serializeCookie } from "./cookie";
 import type { Meta } from "./meta";
 
-export type GetToolProgramSchedulesDatum = {
+export type GetProgramSchedulesDatum = {
   nicoliveProgramId: string;
   testBeginAt: number;
   onAirBeginAt: number;
@@ -11,16 +11,16 @@ export type GetToolProgramSchedulesDatum = {
   status: "reserved" | "test" | "onAir" | "end";
 };
 
-export type GetToolProgramSchedulesData = GetToolProgramSchedulesDatum[];
+export type GetProgramSchedulesData = GetProgramSchedulesDatum[];
 
-export type GetToolProgramSchedulesResponse = {
+export type GetProgramSchedulesResponse = {
   meta: Meta;
-  data?: GetToolProgramSchedulesData;
+  data?: GetProgramSchedulesData;
 };
 
-export function getToolProgramSchedules(
+export function getProgramSchedules(
   userSession: string,
-): Promise<GetToolProgramSchedulesResponse> {
+): Promise<GetProgramSchedulesResponse> {
   const url = "https://live2.nicovideo.jp/unama/tool/v1/program_schedules";
 
   return request(url, {

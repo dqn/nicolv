@@ -40,7 +40,7 @@ export type KonomiTag = {
   nicopediaUrl: string;
 };
 
-export type GetUnamaApiV2ProgramsData = {
+export type GetProgramsData = {
   isUpdatable: boolean;
   isQuotable: boolean;
   isTagOwnerLock: boolean;
@@ -66,15 +66,15 @@ export type GetUnamaApiV2ProgramsData = {
   isTimeshiftEnabled: boolean;
 };
 
-export type GetUnamaApiV2ProgramsResponse = {
+export type GetProgramsResponse = {
   meta: Meta;
-  data?: GetUnamaApiV2ProgramsData;
+  data?: GetProgramsData;
 };
 
-export function getUnamaApiV2Programs(
+export function getPrograms(
   userSession: string,
   nicoliveProgramId?: string,
-): Promise<GetUnamaApiV2ProgramsResponse> {
+): Promise<GetProgramsResponse> {
   const url = `https://live2.nicovideo.jp/unama/api/v2/programs/${
     nicoliveProgramId ?? "latest"
   }`;
@@ -86,7 +86,7 @@ export function getUnamaApiV2Programs(
   });
 }
 
-export type PostUnamaApiV2ProgramsRequest = {
+export type PostProgramsRequest = {
   title: string;
   description: string;
   category: string;
@@ -108,19 +108,19 @@ export type PostUnamaApiV2ProgramsRequest = {
   konomiTagIds?: number[];
 };
 
-export type PostUnamaApiV2ProgramsData = {
+export type PostProgramsData = {
   id: string;
 };
 
-export type PostUnamaApiV2ProgramsResponse = {
+export type PostProgramsResponse = {
   meta: Meta;
-  data?: PostUnamaApiV2ProgramsData;
+  data?: PostProgramsData;
 };
 
-export function postUnamaApiV2Programs(
+export function postPrograms(
   userSession: string,
-  body: PostUnamaApiV2ProgramsRequest,
-): Promise<PostUnamaApiV2ProgramsResponse> {
+  body: PostProgramsRequest,
+): Promise<PostProgramsResponse> {
   const url = "https://live2.nicovideo.jp/unama/api/v2/programs";
 
   return request(url, {
@@ -133,17 +133,17 @@ export function postUnamaApiV2Programs(
   });
 }
 
-export type PatchUnamaApiV2ProgramsRequest = Partial<PostUnamaApiV2ProgramsRequest>;
+export type PatchProgramsRequest = Partial<PostProgramsRequest>;
 
-export type PatchUnamaApiV2ProgramsResponse = {
+export type PatchProgramsResponse = {
   meta: Meta;
 };
 
-export function patchUnamaApiV2Programs(
+export function patchPrograms(
   userSession: string,
   nicoliveProgramId: string,
-  body: PatchUnamaApiV2ProgramsRequest,
-): Promise<PatchUnamaApiV2ProgramsResponse> {
+  body: PatchProgramsRequest,
+): Promise<PatchProgramsResponse> {
   const url = `https://live2.nicovideo.jp/unama/api/v2/programs/${nicoliveProgramId}`;
 
   return request(url, {

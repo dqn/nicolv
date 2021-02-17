@@ -2,25 +2,25 @@ import { request } from "./request";
 import { serializeCookie } from "./cookie";
 import type { Meta } from "./meta";
 
-export type PostWatchEnquete2Item = {
+export type PostEnqueteResultItem = {
   name: string;
   rate: number;
 };
 
-export type PostWatchEnquete2Data = {
+export type PostEnqueteResultData = {
   title: string;
-  items: PostWatchEnquete2Item[];
+  items: PostEnqueteResultItem[];
 };
 
-export type PostWatchEnquete2Response = {
+export type PostEnqueteResultResponse = {
   meta: Meta;
-  data?: PostWatchEnquete2Data;
+  data?: PostEnqueteResultData;
 };
 
-export function postWatchEnquete2(
+export function postEnqueteResult(
   userSession: string,
   nicoliveProgramId: string,
-): Promise<PostWatchEnquete2Response> {
+): Promise<PostEnqueteResultResponse> {
   const url = `https://live2.nicovideo.jp/unama/watch/${nicoliveProgramId}/enquete/result`;
 
   return request(url, {

@@ -1,19 +1,17 @@
 import { request } from "./request";
 import type { Meta } from "./meta";
 
-export type GetUnamaToolV2OnairUserData = {
+export type GetOnairsData = {
   programId?: string;
   nextProgramId?: string;
 };
 
-export type GetUnamaToolV2OnairUserResponse = {
+export type GetOnairsResponse = {
   meta: Meta;
-  data?: GetUnamaToolV2OnairUserData;
+  data?: GetOnairsData;
 };
 
-export function getUnamaToolV2OnairUser(
-  userSession: string,
-): Promise<GetUnamaToolV2OnairUserResponse> {
+export function getOnairs(userSession: string): Promise<GetOnairsResponse> {
   const url = "https://live2.nicovideo.jp/unama/tool/v2/onairs/user";
 
   return request(url, {

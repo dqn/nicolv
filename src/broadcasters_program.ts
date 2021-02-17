@@ -1,26 +1,26 @@
 import { request } from "./request";
 import type { Meta } from "./meta";
 
-export type GetToolBroadcastersLatestProgramData = {
+export type GetBroadcastersProgramData = {
   nicoliveProgramId: string;
 };
 
-export type GetToolBroadcastersLatestProgramResponse = {
+export type GetBroadcastersProgramResponse = {
   meta: Meta;
-  data?: GetToolBroadcastersLatestProgramData;
+  data?: GetBroadcastersProgramData;
 };
 
-export function getToolBroadcastersLatestProgramUser(
+export function getUserProgram(
   uid: number | string,
-): Promise<GetToolBroadcastersLatestProgramResponse> {
+): Promise<GetBroadcastersProgramResponse> {
   const url = `https://live2.nicovideo.jp/unama/tool/v1/broadcasters/user/${uid}/program`;
 
   return request(url);
 }
 
-export function getToolBroadcastersLatestProgramSocialGroup(
+export function getSocialGroupProgram(
   sid: string,
-): Promise<GetToolBroadcastersLatestProgramResponse> {
+): Promise<GetBroadcastersProgramResponse> {
   const url = `https://live2.nicovideo.jp/unama/tool/v1/broadcasters/social_group/${sid}/program`;
 
   return request(url);

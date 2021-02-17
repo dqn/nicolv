@@ -1,34 +1,34 @@
 import {
-  getPrograminfo,
+  getBroadcastable,
+  getUserProgram,
+  getSocialGroupProgram,
+  postEnqueteResult,
+  postEnquete,
+  deleteEnquete,
   getExtension,
   postExtension,
+  getOnairs,
   putOperatorComment,
   deleteOperatorComment,
+  getProgramSchedules,
+  getPrograminfo,
+  getProgramsCategories,
+  getProgramsSsng,
+  postProgramsSsng,
+  deleteProgramsSsng,
+  getPrograms,
+  postPrograms,
+  patchPrograms,
+  patchQuotationContents,
+  patchQuotationLayout,
+  getQuotation,
+  postQuotation,
+  deleteQuotation,
   putSegment,
-  getToolBroadcastersLatestProgramUser,
-  getToolBroadcastersLatestProgramSocialGroup,
-  deleteToolsLiveContentsQuotation,
-  getToolProgramSchedules,
-  getToolsLiveContentsQuotation,
-  postToolsLiveContentsQuotation,
-  patchToolsLiveContentsQuotationContents,
-  patchToolsLiveContentsQuotationLayout,
-  getToolsLiveQuoteServicesVideoContents,
-  getUnamaApiV2Broadcastable,
-  getUnamaApiV2Programs,
-  postUnamaApiV2Programs,
-  patchUnamaApiV2Programs,
-  getUnamaApiV2ProgramsCategories,
-  getUnamaToolV2OnairUser,
-  getUnamaToolV2ProgramsSsng,
-  postUnamaToolV2ProgramsSsng,
-  deleteUnamaToolV2ProgramsSsng,
+  getStatistics,
+  getUserCommentPermission,
   getUserNickname,
-  postWatchEnquete2,
-  deleteWatchEnquete,
-  postWatchEnquete,
-  getWatchStatistics,
-  getWatchUserCommentPermission,
+  getVideoContents,
 } from "./..";
 import { request } from "./../request";
 import { serializeCookie } from "./../cookie";
@@ -55,10 +55,55 @@ describe("serializeCookie", () => {
   });
 });
 
-describe("programinfo", () => {
+describe("broadcastable", () => {
   it("get", async () => {
     // requestMock.mockImplementation(requestActual);
-    const res = await getPrograminfo(userSession, nicoliveProgramId);
+    const res = await getBroadcastable(userSession, sid);
+    expect(res.meta.status).toBe(200);
+  });
+
+  it("get without sid", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await getBroadcastable(userSession);
+    expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("broadcasters_program", () => {
+  it("get user", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await getUserProgram(uid);
+    expect(res.meta.status).toBe(200);
+  });
+
+  it("get social group", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await getSocialGroupProgram(sid);
+    expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("enquete_result", () => {
+  it("post", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await postEnqueteResult(userSession, nicoliveProgramId);
+    expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("enquete", () => {
+  it("post", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await postEnquete(userSession, nicoliveProgramId, {
+      question: "which?",
+      items: ["foo", "bar", "baz"],
+    });
+    expect(res.meta.status).toBe(200);
+  });
+
+  it("delete", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await deleteEnquete(userSession, nicoliveProgramId);
     expect(res.meta.status).toBe(200);
   });
 });
@@ -75,6 +120,14 @@ describe("extension", () => {
     const res = await postExtension(userSession, nicoliveProgramId, {
       minutes: 30,
     });
+    expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("onairs", () => {
+  it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await getOnairs(userSession);
     expect(res.meta.status).toBe(200);
   });
 });
@@ -98,170 +151,72 @@ describe("operator_comment", () => {
   });
 });
 
-describe("segment", () => {
-  it("put", async () => {
-    // requestMock.mockImplementation(requestActual);
-    const res = await putSegment(userSession, nicoliveProgramId, {
-      state: "on_air",
-    });
-    expect(res.meta.status).toBe(200);
-  });
-});
-
-describe("tool_broadcasters_latest_program", () => {
-  it("get user", async () => {
-    // requestMock.mockImplementation(requestActual);
-    const res = await getToolBroadcastersLatestProgramUser(uid);
-    expect(res.meta.status).toBe(200);
-  });
-
-  it("get social group", async () => {
-    // requestMock.mockImplementation(requestActual);
-    const res = await getToolBroadcastersLatestProgramSocialGroup(sid);
-    expect(res.meta.status).toBe(200);
-  });
-});
-
-describe("tool_program_schedules", () => {
+describe("program_schedules", () => {
   it("get", async () => {
     // requestMock.mockImplementation(requestActual);
-    const res = await getToolProgramSchedules(userSession);
+    const res = await getProgramSchedules(userSession);
     expect(res.meta.status).toBe(200);
   });
 });
 
-describe("tools_live_contents_quotation", () => {
+describe("programinfo", () => {
   it("get", async () => {
     // requestMock.mockImplementation(requestActual);
-    const res = await getToolsLiveContentsQuotation(
-      userSession,
-      nicoliveProgramId,
-    );
+    const res = await getPrograminfo(userSession, nicoliveProgramId);
+    expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("programs_categories", () => {
+  it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await getProgramsCategories();
+    expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("programs_ssng", () => {
+  it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await getProgramsSsng(userSession, nicoliveProgramId);
     expect(res.meta.status).toBe(200);
   });
 
   it("post", async () => {
     // requestMock.mockImplementation(requestActual);
-    const res = await postToolsLiveContentsQuotation(
-      userSession,
-      nicoliveProgramId,
-      {
-        layout: {
-          main: {
-            source: "quote",
-            volume: 1,
-          },
-          sub: {
-            source: "self",
-            volume: 1,
-            isSoundOnly: false,
-          },
-        },
-        contents: [
-          {
-            id: contentId,
-            type: "video",
-          },
-        ],
-      },
-    );
+    const res = await postProgramsSsng(userSession, nicoliveProgramId, [
+      { type: "word", body: "foo" },
+      { type: "user", body: "42" },
+      { type: "command", body: "bar" },
+    ]);
     expect(res.meta.status).toBe(200);
   });
 
   it("delete", async () => {
     // requestMock.mockImplementation(requestActual);
-    const res = await deleteToolsLiveContentsQuotation(
-      userSession,
-      nicoliveProgramId,
-    );
+    const res = await deleteProgramsSsng(userSession, nicoliveProgramId, {
+      id: [42],
+    });
     expect(res.meta.status).toBe(200);
   });
 });
 
-describe("tools_live_contents_quotation_contents", () => {
-  it("patch", async () => {
-    // requestMock.mockImplementation(requestActual);
-    const res = await patchToolsLiveContentsQuotationContents(
-      userSession,
-      nicoliveProgramId,
-      {
-        contents: [
-          {
-            id: contentId,
-            type: "video",
-          },
-        ],
-      },
-    );
-    expect(res.meta.status).toBe(200);
-  });
-});
-
-describe("tools_live_contents_quotation_layout", () => {
-  it("patch", async () => {
-    // requestMock.mockImplementation(requestActual);
-    const res = await patchToolsLiveContentsQuotationLayout(
-      userSession,
-      nicoliveProgramId,
-      {
-        layout: {
-          main: {
-            source: "self",
-            volume: 1,
-          },
-          sub: {
-            source: "quote",
-            volume: 1,
-            isSoundOnly: false,
-          },
-        },
-      },
-    );
-    expect(res.meta.status).toBe(200);
-  });
-});
-
-describe("tools_live_quote_services_video_contents", () => {
+describe("programs", () => {
   it("get", async () => {
     // requestMock.mockImplementation(requestActual);
-    const res = await getToolsLiveQuoteServicesVideoContents(
-      userSession,
-      contentId,
-    );
-    expect(res.meta.status).toBe(200);
-  });
-});
-
-describe("unama_api_v2_broadcastable", () => {
-  it("get", async () => {
-    // requestMock.mockImplementation(requestActual);
-    const res = await getUnamaApiV2Broadcastable(userSession, sid);
-    expect(res.meta.status).toBe(200);
-  });
-
-  it("get without sid", async () => {
-    // requestMock.mockImplementation(requestActual);
-    const res = await getUnamaApiV2Broadcastable(userSession);
-    expect(res.meta.status).toBe(200);
-  });
-});
-
-describe("unama_api_v2_programs", () => {
-  it("get", async () => {
-    // requestMock.mockImplementation(requestActual);
-    const res = await getUnamaApiV2Programs(userSession, nicoliveProgramId);
+    const res = await getPrograms(userSession, nicoliveProgramId);
     expect(res.meta.status).toBe(200);
   });
 
   it("get without nicoliveProgramId", async () => {
     // requestMock.mockImplementation(requestActual);
-    const res = await getUnamaApiV2Programs(userSession);
+    const res = await getPrograms(userSession);
     expect(res.meta.status).toBe(200);
   });
 
   it("post", async () => {
     // requestMock.mockImplementation(requestActual);
-    const res = await postUnamaApiV2Programs(userSession, {
+    const res = await postPrograms(userSession, {
       category: "一般(その他)",
       communityId: sid,
       title: "Hello, World!",
@@ -272,60 +227,108 @@ describe("unama_api_v2_programs", () => {
 
   it("patch", async () => {
     // requestMock.mockImplementation(requestActual);
-    const res = await patchUnamaApiV2Programs(userSession, nicoliveProgramId, {
+    const res = await patchPrograms(userSession, nicoliveProgramId, {
       title: "Edited title",
     });
     expect(res.meta.status).toBe(200);
   });
 });
 
-describe("unama_api_v2_programs_categories", () => {
-  it("get", async () => {
+describe("quotation_contents", () => {
+  it("patch", async () => {
     // requestMock.mockImplementation(requestActual);
-    const res = await getUnamaApiV2ProgramsCategories();
+    const res = await patchQuotationContents(userSession, nicoliveProgramId, {
+      contents: [
+        {
+          id: contentId,
+          type: "video",
+        },
+      ],
+    });
     expect(res.meta.status).toBe(200);
   });
 });
 
-describe("unama_tool_v2_onair_user", () => {
-  it("get", async () => {
+describe("quotation_layout", () => {
+  it("patch", async () => {
     // requestMock.mockImplementation(requestActual);
-    const res = await getUnamaToolV2OnairUser(userSession);
+    const res = await patchQuotationLayout(userSession, nicoliveProgramId, {
+      layout: {
+        main: {
+          source: "self",
+          volume: 1,
+        },
+        sub: {
+          source: "quote",
+          volume: 1,
+          isSoundOnly: false,
+        },
+      },
+    });
     expect(res.meta.status).toBe(200);
   });
 });
 
-describe("unama_tool_v2_programs_ssng", () => {
+describe("quotation", () => {
   it("get", async () => {
     // requestMock.mockImplementation(requestActual);
-    const res = await getUnamaToolV2ProgramsSsng(
-      userSession,
-      nicoliveProgramId,
-    );
+    const res = await getQuotation(userSession, nicoliveProgramId);
     expect(res.meta.status).toBe(200);
   });
 
   it("post", async () => {
     // requestMock.mockImplementation(requestActual);
-    const res = await postUnamaToolV2ProgramsSsng(
-      userSession,
-      nicoliveProgramId,
-      [
-        { type: "word", body: "foo" },
-        { type: "user", body: "42" },
-        { type: "command", body: "bar" },
+    const res = await postQuotation(userSession, nicoliveProgramId, {
+      layout: {
+        main: {
+          source: "quote",
+          volume: 1,
+        },
+        sub: {
+          source: "self",
+          volume: 1,
+          isSoundOnly: false,
+        },
+      },
+      contents: [
+        {
+          id: contentId,
+          type: "video",
+        },
       ],
-    );
+    });
     expect(res.meta.status).toBe(200);
   });
 
   it("delete", async () => {
     // requestMock.mockImplementation(requestActual);
-    const res = await deleteUnamaToolV2ProgramsSsng(
-      userSession,
-      nicoliveProgramId,
-      { id: [42] },
-    );
+    const res = await deleteQuotation(userSession, nicoliveProgramId);
+    expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("segment", () => {
+  it("put", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await putSegment(userSession, nicoliveProgramId, {
+      state: "on_air",
+    });
+    expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("statistics", () => {
+  it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await getStatistics(userSession, nicoliveProgramId);
+    expect(res.meta.status).toBe(200);
+  });
+});
+
+describe("user_comment_permission", () => {
+  it("get", async () => {
+    // requestMock.mockImplementation(requestActual);
+    const res = await getUserCommentPermission(userSession, nicoliveProgramId);
     expect(res.meta.status).toBe(200);
   });
 });
@@ -338,46 +341,10 @@ describe("user_nickname", () => {
   });
 });
 
-describe("watch_enquete2", () => {
-  it("post", async () => {
-    // requestMock.mockImplementation(requestActual);
-    const res = await postWatchEnquete2(userSession, nicoliveProgramId);
-    expect(res.meta.status).toBe(200);
-  });
-});
-
-describe("watch_enquete", () => {
-  it("post", async () => {
-    // requestMock.mockImplementation(requestActual);
-    const res = await postWatchEnquete(userSession, nicoliveProgramId, {
-      question: "which?",
-      items: ["foo", "bar", "baz"],
-    });
-    expect(res.meta.status).toBe(200);
-  });
-
-  it("delete", async () => {
-    // requestMock.mockImplementation(requestActual);
-    const res = await deleteWatchEnquete(userSession, nicoliveProgramId);
-    expect(res.meta.status).toBe(200);
-  });
-});
-
-describe("watch_statistics", () => {
+describe("video_contents", () => {
   it("get", async () => {
     // requestMock.mockImplementation(requestActual);
-    const res = await getWatchStatistics(userSession, nicoliveProgramId);
-    expect(res.meta.status).toBe(200);
-  });
-});
-
-describe("watch_user_comment_permission", () => {
-  it("get", async () => {
-    // requestMock.mockImplementation(requestActual);
-    const res = await getWatchUserCommentPermission(
-      userSession,
-      nicoliveProgramId,
-    );
+    const res = await getVideoContents(userSession, contentId);
     expect(res.meta.status).toBe(200);
   });
 });

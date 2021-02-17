@@ -1,18 +1,18 @@
 import { request } from "./request";
 import { serializeCookie } from "./cookie";
 import type { Meta } from "./meta";
-import type { QuoteContent, QuoteLayout } from "./quatation";
+import type { QuoteContent, QuoteLayout } from "./quote";
 
-export type GetToolsLiveContentsQuotationResponse = {
+export type GetQuotationResponse = {
   meta: Meta;
   layout?: QuoteLayout;
   currentContent?: QuoteContent;
 };
 
-export function getToolsLiveContentsQuotation(
+export function getQuotation(
   userSession: string,
   contentId: string,
-): Promise<GetToolsLiveContentsQuotationResponse> {
+): Promise<GetQuotationResponse> {
   const url = `https://lapi.spi.nicovideo.jp/v1/tools/live/contents/${contentId}/quotation`;
 
   return request(url, {
@@ -24,20 +24,20 @@ export function getToolsLiveContentsQuotation(
   });
 }
 
-export type PostToolsLiveContentsQuotationRequest = {
+export type PostQuotationRequest = {
   layout: QuoteLayout;
   contents: QuoteContent[];
 };
 
-export type PostToolsLiveContentsQuotationResponse = {
+export type PostQuotationResponse = {
   meta: Meta;
 };
 
-export function postToolsLiveContentsQuotation(
+export function postQuotation(
   userSession: string,
   contentId: string,
-  body: PostToolsLiveContentsQuotationRequest,
-): Promise<PostToolsLiveContentsQuotationResponse> {
+  body: PostQuotationRequest,
+): Promise<PostQuotationResponse> {
   const url = `https://lapi.spi.nicovideo.jp/v1/tools/live/contents/${contentId}/quotation`;
 
   return request(url, {
@@ -52,14 +52,14 @@ export function postToolsLiveContentsQuotation(
   });
 }
 
-export type DeleteToolsLiveContentsQuotationResponse = {
+export type DeleteQuotationResponse = {
   meta: Meta;
 };
 
-export function deleteToolsLiveContentsQuotation(
+export function deleteQuotation(
   userSession: string,
   contentId: string,
-): Promise<DeleteToolsLiveContentsQuotationResponse> {
+): Promise<DeleteQuotationResponse> {
   const url = `https://lapi.spi.nicovideo.jp/v1/tools/live/contents/${contentId}/quotation`;
 
   return request(url, {

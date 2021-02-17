@@ -2,20 +2,20 @@ import { request } from "./request";
 import { serializeCookie } from "./cookie";
 import type { Meta } from "./meta";
 
-export type PostWatchEnqueteRequest = {
+export type PostEnqueteRequest = {
   question: string;
   items: string[];
 };
 
-export type PostWatchEnqueteResponse = {
+export type PostEnqueteResponse = {
   meta: Meta;
 };
 
-export function postWatchEnquete(
+export function postEnquete(
   userSession: string,
   nicoliveProgramId: string,
-  body: PostWatchEnqueteRequest,
-): Promise<PostWatchEnqueteResponse> {
+  body: PostEnqueteRequest,
+): Promise<PostEnqueteResponse> {
   const url = `https://live2.nicovideo.jp/unama/watch/${nicoliveProgramId}/enquete`;
 
   return request(url, {
@@ -30,14 +30,14 @@ export function postWatchEnquete(
   });
 }
 
-export type DeleteWatchEnqueteResponse = {
+export type DeleteEnqueteResponse = {
   meta: Meta;
 };
 
-export function deleteWatchEnquete(
+export function deleteEnquete(
   userSession: string,
   nicoliveProgramId: string,
-): Promise<DeleteWatchEnqueteResponse> {
+): Promise<DeleteEnqueteResponse> {
   const url = `https://live2.nicovideo.jp/unama/watch/${nicoliveProgramId}/enquete`;
 
   return request(url, {

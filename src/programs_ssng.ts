@@ -3,23 +3,23 @@ import type { Meta } from "./meta";
 
 export type NgType = "word" | "user" | "command";
 
-export type GetUnamaToolV2ProgramsSsngDatum = {
+export type GetProgramsSsngDatum = {
   id: number;
   type: NgType;
   body: string;
 };
 
-export type GetUnamaToolV2ProgramsSsngData = GetUnamaToolV2ProgramsSsngDatum[];
+export type GetProgramsSsngData = GetProgramsSsngDatum[];
 
-export type GetUnamaToolV2ProgramsSsngResponse = {
+export type GetProgramsSsngResponse = {
   meta: Meta;
-  data?: GetUnamaToolV2ProgramsSsngData;
+  data?: GetProgramsSsngData;
 };
 
-export function getUnamaToolV2ProgramsSsng(
+export function getProgramsSsng(
   userSession: string,
   nicoliveProgramId: string,
-): Promise<GetUnamaToolV2ProgramsSsngResponse> {
+): Promise<GetProgramsSsngResponse> {
   const url = `https://live2.nicovideo.jp/unama/tool/v2/programs/${nicoliveProgramId}/ssng`;
 
   return request(url, {
@@ -29,29 +29,29 @@ export function getUnamaToolV2ProgramsSsng(
   });
 }
 
-export type PostUnamaToolV2ProgramsSsngRequest = {
+export type PostProgramsSsngRequest = {
   type: NgType;
   body: string;
 }[];
 
-export type PostUnamaToolV2ProgramsSsngDatum = {
+export type PostProgramsSsngDatum = {
   id: number;
   type: NgType;
   body: string;
 };
 
-export type PostUnamaToolV2ProgramsSsngData = PostUnamaToolV2ProgramsSsngDatum[];
+export type PostProgramsSsngData = PostProgramsSsngDatum[];
 
-export type PostUnamaToolV2ProgramsSsngResponse = {
+export type PostProgramsSsngResponse = {
   meta: Meta;
-  data?: PostUnamaToolV2ProgramsSsngData;
+  data?: PostProgramsSsngData;
 };
 
-export function postUnamaToolV2ProgramsSsng(
+export function postProgramsSsng(
   userSession: string,
   nicoliveProgramId: string,
-  body: PostUnamaToolV2ProgramsSsngRequest,
-): Promise<PostUnamaToolV2ProgramsSsngResponse> {
+  body: PostProgramsSsngRequest,
+): Promise<PostProgramsSsngResponse> {
   const url = `https://live2.nicovideo.jp/unama/tool/v2/programs/${nicoliveProgramId}/ssng`;
 
   return request(url, {
@@ -64,17 +64,17 @@ export function postUnamaToolV2ProgramsSsng(
   });
 }
 
-export type DeleteUnamaToolV2ProgramsSsngRequest = { id: number[] };
+export type DeleteProgramsSsngRequest = { id: number[] };
 
-export type DeleteUnamaToolV2ProgramsSsngResponse = {
+export type DeleteProgramsSsngResponse = {
   meta: Meta;
 };
 
-export function deleteUnamaToolV2ProgramsSsng(
+export function deleteProgramsSsng(
   userSession: string,
   nicoliveProgramId: string,
-  body: DeleteUnamaToolV2ProgramsSsngRequest,
-): Promise<DeleteUnamaToolV2ProgramsSsngResponse> {
+  body: DeleteProgramsSsngRequest,
+): Promise<DeleteProgramsSsngResponse> {
   const url = `https://live2.nicovideo.jp/unama/tool/v2/programs/${nicoliveProgramId}/ssng`;
 
   return request(url, {

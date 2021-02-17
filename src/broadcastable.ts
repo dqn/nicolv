@@ -1,7 +1,7 @@
 import { request } from "./request";
 import type { Meta } from "./meta";
 
-export type GetUnamaApiV2BroadcastableDatum = {
+export type GetBroadcastableDatum = {
   id: string;
   name: string;
   isPenalized: boolean;
@@ -11,20 +11,20 @@ export type GetUnamaApiV2BroadcastableDatum = {
   level: number;
 };
 
-export type GetUnamaApiV2BroadcastableData = GetUnamaApiV2BroadcastableDatum[];
+export type GetBroadcastableData = GetBroadcastableDatum[];
 
-export type GetUnamaApiV2BroadcastableResponse = {
+export type GetBroadcastableResponse = {
   meta: Meta;
-  data?: GetUnamaApiV2BroadcastableData;
+  data?: GetBroadcastableData;
   errors?: {
     expiryTime: string;
   };
 };
 
-export function getUnamaApiV2Broadcastable(
+export function getBroadcastable(
   userSession: string,
   communityId?: string,
-): Promise<GetUnamaApiV2BroadcastableResponse> {
+): Promise<GetBroadcastableResponse> {
   const url = new URL("https://live2.nicovideo.jp/unama/api/v2/broadcastable");
 
   if (communityId !== void 0) {
