@@ -3,7 +3,12 @@ import type { RequestInfo, RequestInit } from "node-fetch";
 
 export function request<Response>(
   url: RequestInfo,
-  options?: RequestInit,
+  options: RequestInit = {},
 ): Promise<Response> {
+  options.headers = {
+    ...options.headers,
+    ["User-Agent"]: "nicolv",
+  };
+
   return fetch(url, options).then((res) => res.json());
 }
