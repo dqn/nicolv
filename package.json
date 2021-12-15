@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "@types/jest": "27.0.3",
-    "@types/node": "16.11.13",
+    "@types/node": "16.11.14",
     "@types/node-fetch": "2.5.12",
     "dotenv": "10.0.0",
     "jest": "27.4.5",
