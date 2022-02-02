@@ -13,7 +13,7 @@
     "@types/jest": "27.4.0",
     "@types/node": "16.11.22",
     "@types/node-fetch": "2.5.12",
-    "dotenv": "15.0.0",
+    "dotenv": "15.0.1",
     "jest": "27.4.7",
     "prettier": "2.5.1",
     "ts-jest": "27.1.3",
